@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update employee</title>
+</head>
+<body>
+<form th:method="PATCH" th:action="@{/employee/{employeeId}(employeeId=${employee.getEmployeeId()})}" th:object="${employee}">
+    <label for="firstName">Enter first name</label>
+    <input type="text" th:field="*{firstName}" id="firstName"/>
+
+    <label for="lastName">Enter last name</label>
+    <input type="text" th:field="*{lastName}" id="lastName"/>
+
+    <label for="departmentId">Enter gender</label>
+    <select name="gender" th:field="*{gender}">
+        <option th:each="genderOpt : ${T(com.mastery.java.task.dto.Gender).values()}"
+                th:value="${genderOpt}" th:text="${genderOpt.getGender()}"></option>
+    </select>
+
+    <label for="departmentId">Enter department Id</label>
+    <input type="number" th:field="*{departmentId}" id="departmentId"/>
+
+    <label for="departmentId">Enter job title</label>
+    <select name="jobTitle" th:field="*{jobTitle}">
+        <option th:each="jobTitleOpt : ${T(com.mastery.java.task.dto.JobTitle).values()}"
+                th:value="${jobTitleOpt}" th:text="${jobTitleOpt.getJobTitle()}"></option>
+    </select>
+
+    <label for="dateOfBirth">Enter date of birth</label>
+    <input type="date" th:field="*{dateOfBirth}" id="dateOfBirth"/>
+    <br/>
+    <input type="submit" value="Update">
+</form>
+</body>
+</html>
